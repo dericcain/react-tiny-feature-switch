@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Features, FeaturesContextState, FeaturesProvider as Provider } from './feature-context';
-import { parseUrlOverrides } from './parse-query-params';
+import { parseUrlOverrides } from './parse-url-overrides';
 
 type FeatureToggleProps = {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export class FeatureToggle extends Component<FeatureToggleProps, FeatureToggleSt
   constructor(props: FeatureToggleProps) {
     super(props);
     this.state = {
-      features: { ...this.props.features, ...parseUrlOverrides(window.location.search) },
+      features: { ...props.features, ...parseUrlOverrides(window.location.search) },
     };
   }
 

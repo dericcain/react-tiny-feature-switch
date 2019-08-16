@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
-import { featuresContext } from 'feature-context';
+import { featuresContext } from './feature-context';
 
-export type FeatureSwitchProps = {
+type FeatureSwitchProps = {
   features: string | string[];
   children: React.ReactNode;
 };

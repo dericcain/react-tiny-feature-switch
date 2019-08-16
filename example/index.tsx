@@ -29,16 +29,12 @@ const Profile = () => (
   </div>
 );
 
+// Don't know if this would ever be used, but it does take an array of features. If an array is used,
+// both must be true in order for the children to be displayed.
 const OtherFields = () => (
   <FeatureSwitch features={['phone', 'zip']}>
     <div>Phone: 205.999.9912</div>
     <div>Zip: 35209</div>
-  </FeatureSwitch>
-);
-
-const Version1Dot1 = () => (
-  <FeatureSwitch features="v1.1">
-    <div>This is version 1.1</div>
   </FeatureSwitch>
 );
 
@@ -50,8 +46,6 @@ const features = {
   avatar: false,
   phone: false,
   zip: false,
-  v1: ['firstName', 'lastName'],
-  'v1.1': ['phone', 'zip'],
 };
 
 const App = () => (

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { featuresContext } from 'feature-context';
+import { featuresContext } from './feature-context';
 
 type FeatureTogglerProps = {
   alwaysShow?: boolean;

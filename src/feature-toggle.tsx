@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import { Features, FeaturesContextState, FeaturesProvider as Provider } from 'feature-context';
-import { parseUrlOverrides } from 'parse-query-params';
+import { Features, FeaturesContextState, FeaturesProvider as Provider } from './feature-context';
+import { parseUrlOverrides } from './parse-query-params';
 
-export type FeatureToggleProps = {
+type FeatureToggleProps = {
   children: React.ReactNode;
   features: Features;
 };
 
-export type FeatureToggleState = {
+type FeatureToggleState = {
   features: Features;
 };
 
@@ -43,7 +43,7 @@ export class FeatureToggle extends Component<FeatureToggleProps, FeatureToggleSt
     this.setState(prevState => ({
       features: {
         ...prevState.features,
-        [feature]: prevState.features[feature],
+        [feature]: !prevState.features[feature],
       },
     }));
   };

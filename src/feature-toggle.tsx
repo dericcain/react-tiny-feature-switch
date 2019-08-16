@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Features, FeaturesContextState, FeaturesProvider as Provider } from './feature-context';
+import { Features, FeaturesContextState, FeaturesProvider as Provider } from 'feature-context';
+import { parseUrlOverrides } from 'parse-query-params';
 
 export type FeatureToggleProps = {
   children: React.ReactNode;
@@ -8,29 +9,16 @@ export type FeatureToggleProps = {
 };
 
 export type FeatureToggleState = {
-  features: string[];
+  features: Features;
 };
 
-export type Overrides = {
-  [key: string]: boolean;
-};
-
-function parseUrlOverrides() {
-  const paramEntries = new URLSearchParams(window.location.search).entries();
-  const overrides: Overrides = {};
-  for (let [k, v] of paramEntries) {
-    overrides[k] = v === 'true' || v === '1';
-  }
-  return overrides;
-}
-
-export default class FeatureToggle extends Component<FeatureToggleProps, FeatureToggleState> {
+export class FeatureToggle extends Component<FeatureToggleProps, FeatureToggleState> {
   public state: FeatureToggleState;
 
   constructor(props: FeatureToggleProps) {
     super(props);
     this.state = {
-      features: this.parseFeatures({ ...this.props.features }),
+      features: { ...this.props.features, ...parseUrlOverrides(window.location.search) },
     };
   }
 
@@ -52,19 +40,12 @@ export default class FeatureToggle extends Component<FeatureToggleProps, Feature
   };
 
   public toggleFeature = (feature: string) => {
-    this.setState(prevState => {
-      const features = prevState.features;
-      if (prevState.features.includes(feature)) {
-        return {
-          features: features.filter((f: string) => f !== feature),
-        };
-      } else {
-        features.push(feature);
-        return {
-          features,
-        };
-      }
-    });
+    this.setState(prevState => ({
+      features: {
+        ...prevState.features,
+        [feature]: prevState.features[feature],
+      },
+    }));
   };
 
   public render() {
@@ -72,32 +53,6 @@ export default class FeatureToggle extends Component<FeatureToggleProps, Feature
   }
 
   private isSingleFeatureEnabled = (feature: string): boolean => {
-    return this.contextState.features.includes(feature);
+    return this.contextState.features[feature];
   };
-
-  private parseFeatures(features: Features): string[] {
-    const enabledFeatures: string[] = [];
-    Object.entries(features).forEach(([k, v]) => {
-      if (Array.isArray(v)) {
-        v.forEach(k => {
-          if (!enabledFeatures.includes(k)) {
-            enabledFeatures.push(k);
-          }
-        });
-      } else if (v && !enabledFeatures.includes(k)) {
-        enabledFeatures.push(k);
-      }
-    });
-    const overrides = parseUrlOverrides();
-
-    return [...enabledFeatures, ...Object.keys(overrides)].reduce(
-      (acc: string[], current: string) => {
-        if (overrides[current] === false || acc.includes(current)) {
-          return acc;
-        }
-        return [...acc, current];
-      },
-      [],
-    );
-  }
 }

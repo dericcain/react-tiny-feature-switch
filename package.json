@@ -51,6 +51,9 @@
     "typescript": "^3.5.3"
   },
   "jest": {
-    "testURL": "http://localhost"
+    "testURL": "http://localhost",
+    "setupFilesAfterEnv": [
+      "./setup-test.ts"
+    ]
   }
 }

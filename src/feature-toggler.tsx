@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { featuresContext } from './feature-context';
 
-type FeatureTogglerProps = {
+export type FeatureTogglerProps = {
   alwaysShow?: boolean;
 };
 
@@ -12,6 +12,7 @@ export function FeatureToggler({ alwaysShow = false }: FeatureTogglerProps) {
 
   return showPanel || alwaysShow ? (
     <div
+      data-testid="feature-toggler"
       style={{
         position: 'fixed',
         bottom: 24,
@@ -36,6 +37,7 @@ export function FeatureToggler({ alwaysShow = false }: FeatureTogglerProps) {
             <div key={key}>
               <label htmlFor={`__feature-${key}`}>
                 <input
+                  data-testid={`feature-toggler-checkbox-${key}`}
                   type="checkbox"
                   checked={isEnabled(key)}
                   id={`__feature-${key}`}

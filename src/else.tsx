@@ -4,7 +4,7 @@ export type ElseProps = {
   children: React.ReactNode | any;
 };
 
-export default function Else({ children = null }: ElseProps) {
+export function Else({ children = null }: ElseProps) {
   return children;
 }
 

@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 
 export type Features = {
-  [key: string]: boolean | string[];
+  [key: string]: boolean;
 };
 
 export type FeaturesContextState = {
-  features: string[];
+  features: Features;
   isEnabled: (feature: string | string[]) => boolean;
   toggleFeature: (feature: string) => void;
   allFeatures: Features;

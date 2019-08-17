@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { Features, FeatureToggler, FeatureToggle, Else } from '../src';
+import { Syntax } from './syntax';
 
 const Profile = () => (
   <div className="profile">
@@ -49,15 +50,22 @@ const features = {
 };
 
 const App = () => (
-  <Features features={features}>
-    <div>
-      <div className="App">
-        <Profile />
-        <OtherFields />
+  <div style={{
+    display: 'flex'
+  }}>
+    <Features features={features}>
+      <div className="column">
+        <div className="App">
+          <Profile />
+          <OtherFields />
+        </div>
+        <FeatureToggler alwaysShow />
       </div>
-      <FeatureToggler alwaysShow />
+    </Features>
+    <div className="column">
+      <Syntax />
     </div>
-  </Features>
+  </div>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));

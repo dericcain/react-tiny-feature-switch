@@ -1,58 +1,19 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 
-import { Features, FeaturesContextState, FeaturesProvider as Provider } from './feature-context';
-import { parseUrlOverrides } from './parse-url-overrides';
+import { featuresContext } from './feature-context';
 
-type FeatureToggleProps = {
+type FeatureSwitchProps = {
+  features: string | string[];
   children: React.ReactNode;
-  features: Features;
 };
 
-type FeatureToggleState = {
-  features: Features;
-};
-
-export class FeatureToggle extends Component<FeatureToggleProps, FeatureToggleState> {
-  public state: FeatureToggleState;
-
-  constructor(props: FeatureToggleProps) {
-    super(props);
-    this.state = {
-      features: { ...props.features, ...parseUrlOverrides(window.location.search) },
-    };
-  }
-
-  public get contextState(): FeaturesContextState {
-    return {
-      features: this.state.features,
-      allFeatures: this.props.features,
-      isEnabled: this.isEnabled,
-      toggleFeature: this.toggleFeature,
-    };
-  }
-
-  public isEnabled = (feature: string | string[]): boolean => {
-    if (Array.isArray(feature)) {
-      return feature.every(this.isSingleFeatureEnabled);
-    }
-
-    return this.isSingleFeatureEnabled(feature);
-  };
-
-  public toggleFeature = (feature: string) => {
-    this.setState(prevState => ({
-      features: {
-        ...prevState.features,
-        [feature]: !prevState.features[feature],
-      },
-    }));
-  };
-
-  public render() {
-    return <Provider value={this.contextState}>{this.props.children}</Provider>;
-  }
-
-  private isSingleFeatureEnabled = (feature: string): boolean => {
-    return this.contextState.features[feature];
-  };
+export function FeatureToggle({ features, children }: FeatureSwitchProps): any {
+  const { isEnabled } = useContext(featuresContext);
+  return isEnabled(features)
+    ? React.Children.map(children, (child: any) =>
+        child.type.displayName === 'FeatureElse' ? null : child,
+      )
+    : React.Children.map(children, (child: any) =>
+        child.type.displayName === 'FeatureElse' ? child : null,
+      );
 }

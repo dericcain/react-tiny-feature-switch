@@ -8,4 +8,4 @@ export function Else({ children = null }: ElseProps) {
   return children;
 }
 
-Else.displayName = 'FeaturesElse';
+Else.displayName = 'FeatureElse';

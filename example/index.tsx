@@ -2,20 +2,20 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { FeatureToggle, FeatureToggler, FeatureSwitch, Else } from '../src';
+import { Features, FeatureToggler, FeatureToggle, Else } from '../src';
 
 const Profile = () => (
   <div className="profile">
-    <FeatureSwitch features="firstName">
+    <FeatureToggle features="firstName">
       <span>John</span>
-    </FeatureSwitch>{' '}
-    <FeatureSwitch features="lastName">
+    </FeatureToggle>{' '}
+    <FeatureToggle features="lastName">
       <span>Doe</span>
-    </FeatureSwitch>
-    <FeatureSwitch features="address">
+    </FeatureToggle>
+    <FeatureToggle features="address">
       <div>123 Main Street, Birmingham, AL 35201</div>
-    </FeatureSwitch>
-    <FeatureSwitch features="avatar">
+    </FeatureToggle>
+    <FeatureToggle features="avatar">
       <img src="https://via.placeholder.com/150" alt="Avatar" />
       <Else>
         <h3>Avatar coming soon!</h3>
@@ -25,17 +25,17 @@ const Profile = () => (
         </p>
       </Else>
       <div>This will only be visible when the avatar is showing.</div>
-    </FeatureSwitch>
+    </FeatureToggle>
   </div>
 );
 
 // Don't know if this would ever be used, but it does take an array of features. If an array is used,
 // both must be true in order for the children to be displayed.
 const OtherFields = () => (
-  <FeatureSwitch features={['phone', 'zip']}>
+  <FeatureToggle features={['phone', 'zip']}>
     <div>Phone: 205.999.9912</div>
     <div>Zip: 35209</div>
-  </FeatureSwitch>
+  </FeatureToggle>
 );
 
 // This can be a JS object or even a JSON file.
@@ -49,7 +49,7 @@ const features = {
 };
 
 const App = () => (
-  <FeatureToggle features={features}>
+  <Features features={features}>
     <div>
       <div className="App">
         <Profile />
@@ -57,7 +57,7 @@ const App = () => (
       </div>
       <FeatureToggler alwaysShow />
     </div>
-  </FeatureToggle>
+  </Features>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));

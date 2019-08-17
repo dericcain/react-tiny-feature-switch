@@ -17,23 +17,9 @@
     "react features"
   ],
   "scripts": {
-    "start": "tsdx watch",
     "build": "tsdx build",
+    "start": "tsdx watch",
     "test": "tsdx test --env=jsdom"
-  },
-  "peerDependencies": {
-    "react": ">=16.8"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
-  "prettier": {
-    "printWidth": 100,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "all"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.0.0",
@@ -50,10 +36,21 @@
     "tslib": "^1.10.0",
     "typescript": "^3.5.3"
   },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
   "jest": {
-    "testURL": "http://localhost",
-    "setupFilesAfterEnv": [
-      "./setup-test.ts"
-    ]
+    "testURL": "http://localhost"
   }
 }

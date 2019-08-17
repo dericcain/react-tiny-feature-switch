@@ -1,14 +1,14 @@
 import { createContext } from 'react';
 
-export type Features = {
+export type FeatureSet = {
   [key: string]: boolean;
 };
 
 export type FeaturesContextState = {
-  features: Features;
+  features: FeatureSet;
   isEnabled: (feature: string | string[]) => boolean;
   toggleFeature: (feature: string) => void;
-  allFeatures: Features;
+  allFeatures: FeatureSet;
 };
 
 const featuresContext = createContext({} as FeaturesContextState);

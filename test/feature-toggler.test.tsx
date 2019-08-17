@@ -2,7 +2,7 @@ import React from 'react';
 import { render as rtlRender, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import { FeatureToggle, FeatureToggler, FeatureSwitch } from '../src';
+import { Features, FeatureToggler, FeatureToggle } from '../src';
 import { FeatureTogglerProps } from '../src/feature-toggler';
 
 const features = {
@@ -16,9 +16,9 @@ type WrapperProps = {
 };
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => (
-  <FeatureToggle features={features}>
+  <Features features={features}>
     <div>{children}</div>
-  </FeatureToggle>
+  </Features>
 );
 
 describe('<FeatureToggler />', () => {
@@ -44,15 +44,15 @@ describe('<FeatureToggler />', () => {
   it('should toggle features on and off', () => {
     const App = () => (
       <Wrapper>
-        <FeatureSwitch features="firstName">
+        <FeatureToggle features="firstName">
           <span>Jon</span>
-        </FeatureSwitch>
-        <FeatureSwitch features="lastName">
+        </FeatureToggle>
+        <FeatureToggle features="lastName">
           <span>Appleseed</span>
-        </FeatureSwitch>
-        <FeatureSwitch features="address">
+        </FeatureToggle>
+        <FeatureToggle features="address">
           <span>123 Main Street</span>
-        </FeatureSwitch>
+        </FeatureToggle>
         <FeatureToggler alwaysShow={true} />
       </Wrapper>
     );

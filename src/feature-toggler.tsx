@@ -8,7 +8,7 @@ export type FeatureTogglerProps = {
 
 export function FeatureToggler({ alwaysShow = false }: FeatureTogglerProps) {
   const { allFeatures, isEnabled, toggleFeature } = useContext(featuresContext);
-  const showPanel = new URLSearchParams(window.location.search).has('showPanel');
+  const showPanel = new URLSearchParams(window.location.search).has('featureToggler');
 
   return showPanel || alwaysShow ? (
     <div
@@ -26,6 +26,7 @@ export function FeatureToggler({ alwaysShow = false }: FeatureTogglerProps) {
         boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
         maxHeight: 400,
         overflowY: 'auto',
+        zIndex: 99999
       }}
     >
       {allFeatures &&

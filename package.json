@@ -1,6 +1,15 @@
 {
   "name": "react-tiny-feature-switch",
-  "version": "1.0.0",
+  "description": "A feature-packed, tiny (~900B) React Feature Toggle",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dericgw/react-tiny-feature-switch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dericgw/react-tiny-feature-switch/issues"
+  },
+  "homepage": "https://github.com/dericgw/react-tiny-feature-switch",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/react-tiny-feature-switch.esm.js",
@@ -24,6 +33,8 @@
     "build:docs": "yarn --cwd example build",
     "release": "np",
     "start": "tsdx watch",
+    "preversion": "npm run build",
+    "version": "npm run build:docs && git add docs",
     "test": "tsdx test --env=jsdom"
   },
   "devDependencies": {

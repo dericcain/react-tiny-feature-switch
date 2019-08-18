@@ -50,9 +50,7 @@ const features = {
 };
 
 const App = () => (
-  <div style={{
-    display: 'flex'
-  }}>
+  <div className="columns">
     <Features features={features}>
       <div className="column">
         <div className="App">

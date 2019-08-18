@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "react-app-polyfill": "^1.0.0",
-    "react-highlight.js": "^1.0.7"
+    "prismjs": "^1.17.1"
   },
   "devDependencies": {
     "@types/react": "^16.8.15",

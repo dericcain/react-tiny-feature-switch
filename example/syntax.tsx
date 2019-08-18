@@ -1,8 +1,13 @@
 import * as React from 'react';
-import Highlight from 'react-highlight.js';
+import Prism from 'prismjs';
+
+import './prism.css';
+
+Prism.highlightAll();
 
 export const Syntax = () => (
-  <Highlight>
+  <pre>
+    <code className="language-javascript">
     {`
       const Profile = () => (
         <div className="profile">
@@ -60,5 +65,6 @@ export const Syntax = () => (
         </Features>
       );
     `}
-  </Highlight>
+    </code>
+  </pre>
 )

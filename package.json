@@ -1,6 +1,6 @@
 {
   "name": "react-tiny-feature-switch",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/react-tiny-feature-switch.esm.js",

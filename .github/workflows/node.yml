@@ -17,8 +17,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: Build & Test
       run: |
         npm install
         npm run build
-        npm test
+        npm run coverage
+    - name: Coveralls
+      uses: coveralls/github-action@master
+      with:
+        github-token: ${{ secretes.github_token }}
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}

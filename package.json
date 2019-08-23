@@ -31,6 +31,7 @@
   "scripts": {
     "build": "tsdx build",
     "build:docs": "yarn --cwd example build",
+    "coveralls": "npm run test -- --coverage && cat ./coverage/lcov.info | coveralls",
     "release": "np",
     "start": "tsdx watch",
     "preversion": "npm run build",
@@ -43,6 +44,7 @@
     "@types/jest": "^24.0.17",
     "@types/react": "^16.9.1",
     "@types/react-dom": "^16.8.5",
+    "coveralls": "^3.0.6",
     "husky": "^3.0.3",
     "np": "^5.0.3",
     "prettier": "^1.18.2",

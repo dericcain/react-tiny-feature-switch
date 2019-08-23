@@ -1,5 +1,7 @@
 # React Tiny Feature Switch
 
+[![Coverage Status](https://coveralls.io/repos/github/dericgw/react-tiny-feature-switch/badge.svg?branch=master)](https://coveralls.io/github/dericgw/react-tiny-feature-switch?branch=master)
+
 🚗 A feature-packed, tiny (~900B), fast React Feature Toggle
 
 > This project uses React Hooks, so you need at least React version 16.8

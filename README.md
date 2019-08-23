@@ -79,7 +79,7 @@ prop and `children` props. The `feature` prop is a `string` or `string[]` (array
 string that is passed in is `true` in the `features` object, which is passed into the `<Features />` 
 component, the child components will be displayed. 
 
-If an array of strings are passed in, they will both need to features that resolve to `true` in order 
+If an array of strings are passed in, they will both need to be `true` in order 
 for the feature to be enabled. This could be useful for versioning the app. For instance, if your 
 are working on `v1.1`, then all of the features that are related to `v1.1` could be set to `true` in 
 the `features` object. Also in that `features` object, there could be a `v1.1` feature that is set to

@@ -22,8 +22,6 @@ jobs:
         npm install
         npm run build
         npm run coverage
-    - name: Coveralls
-      uses: coveralls/github-action@master
       with:
         github-token: ${{ secrets.github_token }}
       env:

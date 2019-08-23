@@ -1,6 +1,6 @@
 # React Tiny Feature Switch
 
-🚗 A feature-packed, tiny, fast (~900B) React Feature Toggle
+🚗 A feature-packed, tiny (~900B), fast React Feature Toggle
 
 > This project uses React Hooks, so you need at least React version 16.8
 

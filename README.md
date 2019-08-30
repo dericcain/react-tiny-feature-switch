@@ -2,12 +2,13 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/dericgw/react-tiny-feature-switch/badge.svg?branch=master)](https://coveralls.io/github/dericgw/react-tiny-feature-switch?branch=master)
 
-🚗 A feature-packed, tiny (~900B), fast React Feature Toggle
+🚗 A feature-packed, tiny (~650B), fast React Feature Toggle
 
 > This project uses React Hooks, so you need at least React version 16.8
 
 ## Features
-- It's small, so it won't take up your size budget
+- It's small, so it won't take up your size budget (~650B)
+- Tree-shakable so you only bundle what you use
 - Define features using a JS object or external JSON file
 - Toggle features using URL Query Parameters, e.g., http://domain.com?someFeature=true
 - Comes with a dev mode Toggler that allows for easily toggling of features (toggle via URL Query)

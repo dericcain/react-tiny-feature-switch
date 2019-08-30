@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { FeatureSet, FeaturesContextState, FeaturesProvider as Provider } from './feature-context';
 import { parseUrlOverrides } from './parse-url-overrides';
@@ -8,51 +8,37 @@ type FeatureToggleProps = {
   features: FeatureSet;
 };
 
-type FeatureToggleState = {
-  features: FeatureSet;
-};
+export function Features({ features: propsFeatures, children }: FeatureToggleProps) {
+  const [features, setFeatures] = useState<FeatureSet>({
+    ...propsFeatures,
+    ...parseUrlOverrides(window.location.search)
+  });
 
-export class Features extends Component<FeatureToggleProps, FeatureToggleState> {
-  public state: FeatureToggleState;
-
-  constructor(props: FeatureToggleProps) {
-    super(props);
-    this.state = {
-      features: { ...props.features, ...parseUrlOverrides(window.location.search) },
-    };
-  }
-
-  public get contextState(): FeaturesContextState {
-    return {
-      features: this.state.features,
-      allFeatures: this.props.features,
-      isEnabled: this.isEnabled,
-      toggleFeature: this.toggleFeature,
-    };
-  }
-
-  public isEnabled = (feature: string | string[]): boolean => {
-    if (Array.isArray(feature)) {
-      return feature.every(this.isSingleFeatureEnabled);
-    }
-
-    return this.isSingleFeatureEnabled(feature);
+  const contextState: FeaturesContextState = {
+    features,
+    allFeatures: propsFeatures,
+    isEnabled,
+    toggleFeature,
   };
 
-  public toggleFeature = (feature: string) => {
-    this.setState(prevState => ({
-      features: {
-        ...prevState.features,
-        [feature]: !prevState.features[feature],
-      },
+  function isEnabled (feature: string | string[]): boolean {
+    if (Array.isArray(feature)) {
+      return feature.every(isSingleFeatureEnabled);
+    }
+
+    return isSingleFeatureEnabled(feature);
+  };
+
+  function toggleFeature (feature: string) {
+    setFeatures(prevState => ({
+      ...prevState,
+      [feature]: !prevState[feature],
     }));
   };
 
-  public render() {
-    return <Provider value={this.contextState}>{this.props.children}</Provider>;
-  }
-
-  private isSingleFeatureEnabled = (feature: string): boolean => {
-    return this.contextState.features[feature];
+  function isSingleFeatureEnabled(feature: string): boolean {
+    return contextState.features[feature];
   };
+
+  return <Provider value={contextState}>{children}</Provider>;
 }

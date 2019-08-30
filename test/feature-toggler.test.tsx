@@ -70,4 +70,21 @@ describe('<FeatureToggler />', () => {
     expect(queryByText(/appleseed/i)).not.toBeInTheDocument();
     expect(queryByText(/123 main/i)).toBeInTheDocument();
   });
+
+  it('should require all features to be true to render feature', () => {
+    const App = () => (
+      <Wrapper>
+        <FeatureToggle features={["firstName", "address"]}>
+          <span>hidden</span>
+        </FeatureToggle>
+        <FeatureToggle features={["firstName", "lastName"]}>
+          <span>shown</span>
+        </FeatureToggle>
+      </Wrapper>
+    );
+    const { queryByText } = rtlRender(<App />);
+
+    expect(queryByText(/hidden/)).not.toBeInTheDocument();
+    expect(queryByText(/shown/)).toBeInTheDocument();
+  });
 });

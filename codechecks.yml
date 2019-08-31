@@ -1,0 +1,7 @@
+checks:
+  - name: build-size-watcher
+    options:
+      gzip: true
+      files:
+        - path: "./dist/*.esm.js"
+        - path: "./dist/*.min.js"

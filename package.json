@@ -1,6 +1,6 @@
 {
   "name": "react-tiny-feature-switch",
-  "description": "A feature-packed, tiny (~900B) React Feature Toggle",
+  "description": "A feature-packed, tiny (~650B) React Feature Toggle",
   "repository": {
     "type": "git",
     "url": "https://github.com/dericgw/react-tiny-feature-switch.git"

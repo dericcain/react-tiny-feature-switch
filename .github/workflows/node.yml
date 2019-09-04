@@ -32,6 +32,6 @@ jobs:
 
     - name: Check
       env:
-        CC_CHECK: ${{ secrets.CC_CHECK }}
+        CC_SECRET: ${{ secrets.CC_SECRET }}
       run:
         npm run check

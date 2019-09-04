@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@codechecks/build-size-watcher": "^0.1.0",
-    "@codechecks/client": "^0.1.7",
+    "@codechecks/client": "^0.1.8",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^9.1.2",
     "@types/jest": "^24.0.17",

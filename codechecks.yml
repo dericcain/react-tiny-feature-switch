@@ -1,0 +1,6 @@
+checks:
+  - name: build-size-watcher
+    options:
+      gzip: true
+      files:
+        - path: "./dist/*.min.js"

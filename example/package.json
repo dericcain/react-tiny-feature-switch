@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "react-app-polyfill": "^1.0.0",
-    "prismjs": "^1.17.1"
+    "prismjs": "^1.25.0"
   },
   "devDependencies": {
     "parcel": "^1.12.3"
